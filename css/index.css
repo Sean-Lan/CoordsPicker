@@ -18,8 +18,11 @@
 }
 
 #coords-table {
-    margin-left: 40px;
+    margin: 20px;
     float: left;
+    display: block;
+    max-height: 600px;
+    overflow: auto;
 }
 
 h1 {
