@@ -33,8 +33,6 @@ class BDMap extends React.Component {
     }
 
     componentDidMount() {
-        console.log('mount');
-        console.log(BMap);
         this._map = new BMap.Map('map');
         var point = new BMap.Point(116.404, 39.915); // 创建点坐标
         this._map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
@@ -97,6 +95,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleButtonClick() {
@@ -105,16 +104,23 @@ class SearchBar extends React.Component {
         );
     }
 
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleButtonClick();
+        }
+    }
+
     render() {
         return (
-            <form id='search-bar'>
+            <div id='search-bar'>
                 <input
                     type='text'
                     placeholder='请输入地点名称'
                     ref='searchInput'
+                    onKeyPress={this.handleKeyPress}
                 />
                 <input type='button' value='确定' onClick={this.handleButtonClick} />
-            </form>
+            </div>
         );
     }
 }
@@ -177,7 +183,6 @@ class Root extends React.Component {
     }
 
     handleUserInput(searchText) {
-        console.log(searchText);
         this.refs.bdmap._local.search(searchText);
     }
 
