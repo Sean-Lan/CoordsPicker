@@ -3,6 +3,12 @@
 ## Install
 
     npm install
+    
+    webpack
+
+## Development
+
+    webpack-dev-server --hot --inline
 
 ## Usage
 
